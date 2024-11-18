@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getEntries } from 'astro:content'
+import { getEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection('paper', ({ data }) => {
+    return import.meta.env.PROD ? data.visible !== false : true
+  })
+
+  return posts.map(post => ({ params: { slug: post.slug }, props: post }))
+}
+
+type Props = CollectionEntry<'paper'>
+
+const props = Astro.props
+
+const authors = await getEntries(props.data.authors)
+
+const { Content } = await props.render()
+const { slug } = Astro.params
+---
+
+<main>
+  <Content />
+  <div>{JSON.stringify(authors)}</div>
+</main>
