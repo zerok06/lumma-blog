@@ -4,12 +4,36 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="asd">
-  <main class="">
+  <main
+    class="h-[80vh] relative -z-10 overflow-hidden rounded-none sm:rounded-3xl"
+  >
+    <NavBar />
     <img
       src="/assets/images/bg.webp"
-      class="h-[80vh] object-cover w-full"
+      class="h-full object-cover absolute top-0 left-0 w-full -z-10"
       alt=""
     />
-    <NavBar />
+
+    <div
+      class="flex bg-gradient-to-t from-black/40 to-black/5 py-4 px-4 md:px-8 gap-4 h-full flex-col pb-16 justify-end relative z-20 text-white"
+    >
+      <h2 class="text-5xl font-semibold sm:text-left text-center text-balance">
+        Lorem ipsum dolor sit amet consectetur.
+      </h2>
+      <p class="text-lg font-medium sm:text-left text-center text-balance">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur
+        delectus reiciendis numquam, veritatis nihil officia cupiditate velit
+        nobis laboriosam at.
+      </p>
+      <div class="flex gap-2 mt-2 flex-wrap sm:justify-start justify-center">
+        {
+          [1, 2, 3, 4].map(item => (
+            <a href="#" class="border rounded-xl px-4 py-1">
+              Etiqueta
+            </a>
+          ))
+        }
+      </div>
+    </div>
   </main>
 </Layout>
